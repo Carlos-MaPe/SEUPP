@@ -138,15 +138,15 @@
 	) 
 ;=Tratamiento GIII/IV con hipergranulación
 	(defrule upp-hipergranulacion "Tratamiento para la UPP con hipergranulacion"
-		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdia-tejido n|N|s|S) (hipergranulacion s|S))
+		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdida-tejido n|N|s|S) (hipergranulacion s|S))
 		=>
 		(printout t "En este caso hay que eliminar el exceso de tejido y también se aplicará en la zona afectada:"
 		crlf "- Nitrato de plata"
 		crlf "- Pomadas con corticoides" crlf)
 	)
 ;=Tratamiento GIII/IV tejido esfacelado
-	(defrule upp-hipergranulacion "Tratamiento para la UPP esfacelada"
-		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdia-tejido n|N|s|S) (esfacelos s|S|n|N) (necrosis s|S|n|N))
+	(defrule upp-esfacelada-necrosada "Tratamiento para la UPP esfacelada o necrosada"
+		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdida-tejido n|N|s|S) (esfacelos s|S|n|N) (necrosis s|S|n|N))
 		=>
 		(printout t "En este caso hay que eliminar el tejido no viable y también se aplicará en la zona afectada:"
 		crlf "- Desbridamiento enzimático:" crlf "  - Colágenasa + apósito secundario "
