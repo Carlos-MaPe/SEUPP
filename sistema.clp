@@ -98,7 +98,7 @@
 		(printout t "La úlcera a tratar es una de GRADO IV. Se caracteriza por una pérdida total del grosor de la piel con destrucción extensa, lesión en músculo, hueso y/o estructuras de sostén (tendón, cápsula articular, etc.). Existe necrosis, lesiones tunelizadas y en cavernas." crlf)
 	)
 	
-	;=Tratamiento GI
+;=Tratamiento GI
 	(defrule gradoi-tto "Tratamiento para UPP de Grado I"
 		(ulcera (piel-integra s|S))
 		=>
@@ -109,7 +109,7 @@
 		)
 	)
 	
-	;=Tratamiento GII/III/IV con granulación y exudoracion
+;=Tratamiento GII/III/IV con granulación y exudoracion
 	(defrule upp-granulacion-ex "Tratamiento para la UPP con granulacion y exudoracion"
 		(ulcera (piel-integra n|N) (perdida-parcial s|S|n|N) (granulacion s|S) (exudoracion s|S))
 		=>
@@ -119,7 +119,7 @@
 		)
 	)
 
-	;=Tratamiento GII/III/IV con granulación y no exudoracion
+;=Tratamiento GII/III/IV con granulación y no exudoracion
 	(defrule upp-granulacion-noex "Tratamiento para la UPP con granulacion"
 		(ulcera (piel-integra n|N) (perdida-parcial s|S|n|N) (granulacion s|S) (exudoracion n|N))
 		=>
@@ -128,7 +128,7 @@
 			crlf "- Apósito secundario (Hidrocoloide o espuma)" crlf)
 	)
 
-	;=Tratamiento GII/III/IV con epitelizacion
+;=Tratamiento GII/III/IV con epitelizacion
 	(defrule upp-epitelizacion "Tratamiento para la UPP con epitelizacion"
 		(ulcera (piel-integra n|N) (perdida-parcial s|S|n|N) (epitelizacion s|S))
 		=>
@@ -136,6 +136,24 @@
 		crlf "- Colágeno"
 		crlf "- Apósitos secundarios (Hidrocoloides o espumas)" crlf)
 	) 
-	;=Tratamiento
-
+;=Tratamiento GIII/IV con hipergranulación
+	(defrule upp-hipergranulacion "Tratamiento para la UPP con hipergranulacion"
+		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdia-tejido n|N|s|S) (hipergranulacion s|S))
+		=>
+		(printout t "En este caso hay que eliminar el exceso de tejido y también se aplicará en la zona afectada:"
+		crlf "- Nitrato de plata"
+		crlf "- Pomadas con corticoides" crlf)
+	)
+;=Tratamiento GIII/IV tejido esfacelado
+	(defrule upp-hipergranulacion "Tratamiento para la UPP esfacelada"
+		(ulcera (piel-integra n|N) (perdida-parcial n|N) (perdia-tejido n|N|s|S) (esfacelos s|S|n|N) (necrosis s|S|n|N))
+		=>
+		(printout t "En este caso hay que eliminar el tejido no viable y también se aplicará en la zona afectada:"
+		crlf "- Desbridamiento enzimático:" crlf "  - Colágenasa + apósito secundario "
+		crlf "- Desbridamiento autolítico:" crlf "  - [Sin exudado] Hidrogel + apósito secundario"
+		crlf "  - [Con exudado] Alginato, hidrofibra, espuma o cualquier otro producto de cura en ambiente húmedo"
+		crlf "- Desbridamiento cortante"
+		crlf "  - Eliminar el tejido no viable con bisturí"
+		crlf "Se puede dar la combinación de cualquiera de ellos")
+	)
 	;;====MOTOR DE INFERENCIA===;;
